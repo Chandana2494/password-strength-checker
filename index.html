@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Password Strength Checker</title>
+    <style>
+        body { font-family: Arial; text-align: center; padding-top: 40px; }
+        input[type=password], input[type=text] { padding: 8px; width: 250px; }
+        button { padding: 8px 15px; margin-top: 10px; }
+        .result { font-size: 20px; margin-top: 20px; }
+    </style>
+    <script>
+        function togglePassword() {
+            var pwdField = document.getElementById("password");
+            var icon = document.getElementById("eyeIcon");
+
+            if (pwdField.type === "password") {
+                pwdField.type = "text";
+                icon.textContent = "👁️"; // show
+            } else {
+                pwdField.type = "password";
+                icon.textContent = "🙈"; // hide
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Password Strength Checker 🔐</h1>
+
+    <form method="POST">
+        <input type="password" id="password" name="password" placeholder="Enter password">
+        <span onclick="togglePassword()" id="eyeIcon" style="cursor:pointer;">🙈</span>
+        <br><br>
+        <button type="submit">Check ✅</button>
+    </form>
+
+    {% if strength %}
+        <div class="result">
+            You Entered: <b>{{ password_text }}</b><br>
+            ➜ Password Strength: <b>{{ strength }}</b>
+        </div>
+    {% endif %}
+</body>
+</html>
